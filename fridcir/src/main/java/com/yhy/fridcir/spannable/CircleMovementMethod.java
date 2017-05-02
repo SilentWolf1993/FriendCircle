@@ -13,11 +13,6 @@ import android.widget.TextView;
 import com.yhy.fridcir.R;
 import com.yhy.fridcir.helper.FcHepler;
 
-/**
- * @author yiw
- * @Description:
- * @date 16/1/2 16:54
- */
 public class CircleMovementMethod extends BaseMovementMethod {
     public final String TAG = CircleMovementMethod.class.getSimpleName();
     private final static int DEFAULT_COLOR_ID = R.color.transparent;
@@ -37,6 +32,8 @@ public class CircleMovementMethod extends BaseMovementMethod {
 
     /**
      * true：响应textview的点击事件， false：响应设置的clickableSpan事件
+     *
+     * @return true：响应textview的点击事件， false：响应设置的clickableSpan事件
      */
     public boolean isPassToTv() {
         return isPassToTv;

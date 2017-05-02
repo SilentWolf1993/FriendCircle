@@ -19,9 +19,6 @@ import com.yhy.fridcir.spannable.SpannableClickable;
 
 import java.util.List;
 
-/**
- * Created by yiwei on 16/7/9.
- */
 public class FavorView extends AppCompatTextView {
     private int itemColor;
     private int itemSelectorColor;

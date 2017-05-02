@@ -24,9 +24,6 @@ import com.yhy.fridcir.utils.SpanUrlUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by yiwei on 16/7/9.
- */
 public class CommentListView extends LinearLayout {
     private int itemColor;
     private int itemSelectorColor;

@@ -7,11 +7,6 @@ import android.view.View;
 import com.yhy.fridcir.R;
 import com.yhy.fridcir.helper.FcHepler;
 
-/**
- * @author yiw
- * @Description:
- * @date 16/1/2 16:32
- */
 public abstract class SpannableClickable extends ClickableSpan implements View.OnClickListener {
 
     private int DEFAULT_COLOR_ID = R.color.color_8290AF;

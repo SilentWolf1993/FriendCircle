@@ -12,9 +12,6 @@ import android.widget.TextView;
 import com.yhy.fridcir.R;
 import com.yhy.fridcir.spannable.CircleMovementMethod;
 
-/**
- * Created by yiwei on 16/7/10.
- */
 public class ExpandTextView extends LinearLayout {
     public static final int DEFAULT_MAX_LINES = 3;
     private TextView contentText;

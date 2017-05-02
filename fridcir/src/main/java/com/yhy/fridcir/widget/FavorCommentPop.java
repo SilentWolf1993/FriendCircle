@@ -15,8 +15,6 @@ import com.yhy.widget.utils.DensityUtils;
 
 /**
  * 朋友圈点赞评论的popupwindow
- *
- * @author wei.yi
  */
 public class FavorCommentPop extends PopupWindow {
     private Context mCtx;
