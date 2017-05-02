@@ -44,7 +44,7 @@ public class ExpandTextView extends LinearLayout {
 
     private void initView() {
         setOrientation(LinearLayout.VERTICAL);
-        LayoutInflater.from(getContext()).inflate(R.layout.layout_magic_text, this);
+        LayoutInflater.from(getContext()).inflate(R.layout.widget_expand_textview, this);
         contentText = (TextView) findViewById(R.id.contentText);
         if (showLines > 0) {
             contentText.setMaxLines(showLines);
@@ -73,9 +73,9 @@ public class ExpandTextView extends LinearLayout {
     }
 
     private void initAttrs(AttributeSet attrs) {
-        TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.ExpandTextView, 0, 0);
+        TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.ExpandTextViewAttrs, 0, 0);
         try {
-            showLines = typedArray.getInt(R.styleable.ExpandTextView_showLines, DEFAULT_MAX_LINES);
+            showLines = typedArray.getInt(R.styleable.ExpandTextViewAttrs_show_lines, DEFAULT_MAX_LINES);
         } finally {
             typedArray.recycle();
         }

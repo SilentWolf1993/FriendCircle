@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            app:showLines="3"/>
+            app:show_lines="3"/>
 
         <com.lzy.ninegrid.NineGridView
             android:id="@+id/ngv_imgs"
@@ -57,7 +57,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="昨天"
                 android:textColor="#707070"
                 android:textSize="12sp"/>
 

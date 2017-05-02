@@ -86,11 +86,11 @@ public class CommentListView extends LinearLayout {
     }
 
     protected void initAttrs(AttributeSet attrs) {
-        TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.PraiseListView, 0, 0);
+        TypedArray typedArray = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.FavorViewAttrs, 0, 0);
         try {
             //textview的默认颜色
-            itemColor = typedArray.getColor(R.styleable.PraiseListView_item_color, getResources().getColor(R.color.praise_item_default));
-            itemSelectorColor = typedArray.getColor(R.styleable.PraiseListView_item_selector_color, getResources().getColor(R.color.praise_item_selector_default));
+            itemColor = typedArray.getColor(R.styleable.FavorViewAttrs_item_color, getResources().getColor(R.color.praise_item_default));
+            itemSelectorColor = typedArray.getColor(R.styleable.FavorViewAttrs_item_selector_color, getResources().getColor(R.color.praise_item_selector_default));
 
         } finally {
             typedArray.recycle();

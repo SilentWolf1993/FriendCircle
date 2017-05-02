@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 25
@@ -36,4 +37,13 @@ dependencies {
     compile 'com.yhy.widget:view-core:1.0.3'
     compile 'com.orhanobut:logger:1.15'
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.14'
+}
+
+publish {
+    userOrg = 'yhyzgn'
+    groupId = 'com.yhy.fridcir'
+    artifactId = 'fridcir'
+    publishVersion = '1.0.0'
+    desc = 'A simgple FriendCircle such as WeChat.'
+    website = 'https://github.com/SilentWolf1993/FriendCircle'
 }

@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.yhy.fridcir.R;
-import com.yhy.fridcir.utils.InputUtils;
 
 /**
  * Created by HongYi Yan on 2017/5/2 15:00.
@@ -27,7 +26,7 @@ public class InputDialogView {
 
         etInput.setHint(hint);
 
-        InputUtils.showSoftInput(ctx, etInput);
+//        InputUtils.showSoftInput(ctx, etInput);
 
         mDialog.setCancelable(true);
 
