@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/civ_avatar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_default_image"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="6dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_user_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="2dp"
+            android:textColor="#8290AF"
+            android:textSize="14sp"/>
+
+        <com.yhy.fridcir.widget.ExpandTextView
+            android:id="@+id/etv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            app:showLines="3"/>
+
+        <com.lzy.ninegrid.NineGridView
+            android:id="@+id/ngv_imgs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="6dp"
+            app:ngv_gridSpacing="2dp"
+            app:ngv_maxSize="20"
+            app:ngv_mode="grid"
+            app:ngv_singleImageRatio="1"
+            app:ngv_singleImageSize="250dp"/>
+
+        <RelativeLayout
+            android:id="@+id/rl_operation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="昨天"
+                android:textColor="#707070"
+                android:textSize="12sp"/>
+
+            <ImageView
+                android:id="@+id/iv_show_pop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:paddingBottom="2dp"
+                android:paddingLeft="4dp"
+                android:paddingTop="6dp"
+                android:src="@mipmap/ic_btn_favor_comment"/>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_favor_comment_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/im_favor_comment_bg"
+            android:orientation="vertical">
+
+            <com.yhy.fridcir.widget.FavorView
+                android:id="@+id/fv_favor_users"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:lineSpacingMultiplier="1.1"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:textColor="@color/praise_item"
+                android:textSize="14sp"
+                app:item_color="@color/praise_item"/>
+
+            <View
+                android:id="@+id/v_div"
+                android:layout_width="match_parent"
+                android:layout_height="0.1dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:background="#aeaeae"
+                android:visibility="gone"/>
+
+            <com.yhy.fridcir.widget.CommentListView
+                android:id="@+id/clv_comment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:item_color="@color/praise_item"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
