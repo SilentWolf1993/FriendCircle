@@ -17,13 +17,13 @@ import com.yhy.fridcir.R;
 import com.yhy.fridcir.entity.CircleItem;
 import com.yhy.fridcir.entity.FavorItem;
 import com.yhy.fridcir.entity.User;
-import com.yhy.fridcir.utils.DateUtils;
-import com.yhy.fridcir.utils.ImgUtils;
 import com.yhy.fridcir.utils.SpanUrlUtils;
 import com.yhy.fridcir.widget.CommentListView;
 import com.yhy.fridcir.widget.ExpandTextView;
 import com.yhy.fridcir.widget.FavorCommentPop;
 import com.yhy.fridcir.widget.FavorView;
+import com.yhy.utils.core.DateUtils;
+import com.yhy.utils.core.ImgUtils;
 
 import java.util.HashMap;
 import java.util.List;

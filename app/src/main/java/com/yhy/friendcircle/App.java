@@ -3,9 +3,6 @@ package com.yhy.friendcircle;
 import android.app.Application;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -16,9 +13,9 @@ import com.lzy.ninegrid.NineGridView;
 import com.orhanobut.logger.Logger;
 import com.yhy.fridcir.entity.User;
 import com.yhy.fridcir.helper.FcHepler;
-import com.yhy.fridcir.utils.ImgUtils;
-import com.yhy.fridcir.utils.ToastUtils;
 import com.yhy.friendcircle.global.ImgUrls;
+import com.yhy.utils.core.ImgUtils;
+import com.yhy.utils.core.ToastUtils;
 
 import java.util.UUID;
 
