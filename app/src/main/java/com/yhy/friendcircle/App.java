@@ -11,7 +11,7 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.lzy.ninegrid.NineGridView;
 import com.orhanobut.logger.Logger;
-import com.yhy.fridcir.entity.User;
+import com.yhy.fridcir.entity.FcUser;
 import com.yhy.fridcir.helper.FcHepler;
 import com.yhy.friendcircle.global.ImgUrls;
 import com.yhy.utils.core.ImgUtils;
@@ -23,7 +23,7 @@ import java.util.UUID;
  * Created by HongYi Yan on 2017/4/28 1:17.
  */
 public class App extends Application {
-    private User mUser;
+    private FcUser mFcUser;
 
     @Override
     public void onCreate() {
@@ -33,10 +33,10 @@ public class App extends Application {
     }
 
     private void init() {
-        mUser = new User();
-        mUser.id = UUID.randomUUID().toString();
-        mUser.name = "天狼";
-        mUser.avatar = ImgUrls.getAImgUrl();
+        mFcUser = new FcUser();
+        mFcUser.id = UUID.randomUUID().toString();
+        mFcUser.name = "天狼";
+        mFcUser.avatar = ImgUrls.getAImgUrl();
 
         ToastUtils.init(this);
 
@@ -88,7 +88,7 @@ public class App extends Application {
         Logger.i("model : " + model);
     }
 
-    public User getUser() {
-        return mUser;
+    public FcUser getUser() {
+        return mFcUser;
     }
 }

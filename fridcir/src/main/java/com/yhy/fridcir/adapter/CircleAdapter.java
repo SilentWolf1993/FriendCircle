@@ -14,9 +14,9 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.lzy.ninegrid.NineGridView;
 import com.lzy.ninegrid.preview.NineGridViewClickAdapter;
 import com.yhy.fridcir.R;
-import com.yhy.fridcir.entity.CircleItem;
-import com.yhy.fridcir.entity.FavorItem;
-import com.yhy.fridcir.entity.User;
+import com.yhy.fridcir.entity.FcCircle;
+import com.yhy.fridcir.entity.FcFavor;
+import com.yhy.fridcir.entity.FcUser;
 import com.yhy.fridcir.utils.SpanUrlUtils;
 import com.yhy.fridcir.widget.CommentListView;
 import com.yhy.fridcir.widget.ExpandTextView;
@@ -34,17 +34,17 @@ import de.hdodenhof.circleimageview.CircleImageView;
 /**
  * Created by HongYi Yan on 2017/5/2 13:16.
  */
-public class CircleAdapter extends BaseQuickAdapter<CircleItem, CircleAdapter.CircleViewHolder> {
+public class CircleAdapter extends BaseQuickAdapter<FcCircle, CircleAdapter.CircleViewHolder> {
     private Context mCtx;
-    private User mCurrentUser;
-    private Map<CircleItem, FavorCommentPop> mPopMap;
+    private FcUser mCurrentFcUser;
+    private Map<FcCircle, FavorCommentPop> mPopMap;
     private OnFavorListener mFavorListener;
     private OnCommentClickListener mCommentClickListener;
 
-    public CircleAdapter(Context ctx, @Nullable List<CircleItem> data, User currentUser) {
+    public CircleAdapter(Context ctx, @Nullable List<FcCircle> data, FcUser currentFcUser) {
         super(R.layout.item_circle_msg_rv_list, data);
         mCtx = ctx;
-        mCurrentUser = currentUser;
+        mCurrentFcUser = currentFcUser;
         mPopMap = new HashMap<>();
     }
 
@@ -54,10 +54,10 @@ public class CircleAdapter extends BaseQuickAdapter<CircleItem, CircleAdapter.Ci
     }
 
     @Override
-    protected void convert(final CircleAdapter.CircleViewHolder helper, final CircleItem item) {
-        ImgUtils.load(helper.civAvatar, item.fromUser.avatar);
+    protected void convert(final CircleAdapter.CircleViewHolder helper, final FcCircle item) {
+        ImgUtils.load(helper.civAvatar, item.fromFcUser.avatar);
 
-        helper.tvUserName.setText(item.fromUser.name);
+        helper.tvUserName.setText(item.fromFcUser.name);
 
         helper.etvContent.setText(SpanUrlUtils.formatUrlString(item.content));
 
@@ -70,7 +70,7 @@ public class CircleAdapter extends BaseQuickAdapter<CircleItem, CircleAdapter.Ci
 
         helper.tvTime.setText(DateUtils.friendlyDate(item.createTime));
 
-        if ((null == item.favorList || item.favorList.isEmpty()) && (null == item.commentList || item.commentList.isEmpty())) {
+        if ((null == item.favorList || item.favorList.isEmpty()) && (null == item.fcCommentList || item.fcCommentList.isEmpty())) {
             //隐藏评论区域
             helper.llCommentFavorArea.setVisibility(View.GONE);
         } else {
@@ -84,14 +84,14 @@ public class CircleAdapter extends BaseQuickAdapter<CircleItem, CircleAdapter.Ci
             helper.fvFavorUsers.setVisibility(View.GONE);
         }
 
-        if (null != item.commentList && !item.commentList.isEmpty()) {
+        if (null != item.fcCommentList && !item.fcCommentList.isEmpty()) {
             helper.clvComment.setVisibility(View.VISIBLE);
-            helper.clvComment.setCommentList(item.commentList);
+            helper.clvComment.setCommentList(item.fcCommentList);
         } else {
             helper.clvComment.setVisibility(View.GONE);
         }
 
-        if (null != item.favorList && !item.favorList.isEmpty() && null != item.commentList && !item.commentList.isEmpty()) {
+        if (null != item.favorList && !item.favorList.isEmpty() && null != item.fcCommentList && !item.fcCommentList.isEmpty()) {
             //显示赞与评论区中间的分割线
             helper.vDiv.setVisibility(View.VISIBLE);
         } else {
@@ -139,16 +139,16 @@ public class CircleAdapter extends BaseQuickAdapter<CircleItem, CircleAdapter.Ci
             @Override
             public void onItemClick(View v, int position) {
                 if (null != mCommentClickListener) {
-                    mCommentClickListener.onCommentClick(item, item.commentList.get(position).fromUser, helper.clvComment, v);
+                    mCommentClickListener.onCommentClick(item, item.fcCommentList.get(position).fromFcUser, helper.clvComment, v);
                 }
             }
         });
     }
 
-    private FavorItem getCurUserFavor(CircleItem circleItem) {
-        if (null != circleItem && null != circleItem.favorList && !circleItem.favorList.isEmpty()) {
-            for (FavorItem fi : circleItem.favorList) {
-                if (TextUtils.equals(fi.user.id, mCurrentUser.id)) {
+    private FcFavor getCurUserFavor(FcCircle fcCircle) {
+        if (null != fcCircle && null != fcCircle.favorList && !fcCircle.favorList.isEmpty()) {
+            for (FcFavor fi : fcCircle.favorList) {
+                if (TextUtils.equals(fi.fcUser.id, mCurrentFcUser.id)) {
                     return fi;
                 }
             }
@@ -195,10 +195,10 @@ public class CircleAdapter extends BaseQuickAdapter<CircleItem, CircleAdapter.Ci
     }
 
     public interface OnFavorListener {
-        void onFavor(FavorView favorView, CircleItem item, FavorItem favorItem);
+        void onFavor(FavorView favorView, FcCircle fcCircle, FcFavor fcFavor);
     }
 
     public interface OnCommentClickListener {
-        void onCommentClick(CircleItem item, User toUser, CommentListView clvComment, View alignView);
+        void onCommentClick(FcCircle fcCircle, FcUser toFcUser, CommentListView clvComment, View alignView);
     }
 }

@@ -15,8 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yhy.fridcir.R;
-import com.yhy.fridcir.entity.Comment;
-import com.yhy.fridcir.entity.User;
+import com.yhy.fridcir.entity.FcComment;
+import com.yhy.fridcir.entity.FcUser;
 import com.yhy.fridcir.spannable.CircleMovementMethod;
 import com.yhy.fridcir.spannable.SpannableClickable;
 import com.yhy.fridcir.utils.SpanUrlUtils;
@@ -30,7 +30,7 @@ public class CommentListView extends LinearLayout {
     private OnUserClickListener mUserClickListener;
     private OnItemClickListener mItemClickListener;
     private OnItemLongClickListener mItemLongClickListener;
-    private List<Comment> mDatas;
+    private List<FcComment> mDatas;
     private LayoutInflater layoutInflater;
 
     public void setOnUserClickListener(OnUserClickListener listener) {
@@ -45,26 +45,26 @@ public class CommentListView extends LinearLayout {
         this.mItemLongClickListener = itemLongClickListener;
     }
 
-    public void setCommentList(List<Comment> datas) {
+    public void setCommentList(List<FcComment> datas) {
         if (null == mDatas) {
-            mDatas = new ArrayList<Comment>();
+            mDatas = new ArrayList<FcComment>();
         }
         mDatas = datas;
         notifyDataSetChanged();
     }
 
-    public void addComment(Comment comment) {
-        if (null == comment) {
+    public void addComment(FcComment fcComment) {
+        if (null == fcComment) {
             return;
         }
         if (null == mDatas) {
             mDatas = new ArrayList<>();
         }
-        mDatas.add(comment);
+        mDatas.add(fcComment);
         notifyDataSetChanged();
     }
 
-    public List<Comment> getCommentList() {
+    public List<FcComment> getCommentList() {
         return mDatas;
     }
 
@@ -120,23 +120,23 @@ public class CommentListView extends LinearLayout {
         TextView commentTv = (TextView) convertView.findViewById(R.id.commentTv);
         final CircleMovementMethod circleMovementMethod = new CircleMovementMethod(itemSelectorColor, itemSelectorColor);
 
-        final Comment comment = mDatas.get(position);
+        final FcComment fcComment = mDatas.get(position);
 
         String toReplyName = "";
-        if (null != comment.toUser) {
-            toReplyName = comment.toUser.name;
+        if (null != fcComment.toFcUser) {
+            toReplyName = fcComment.toFcUser.name;
         }
 
         SpannableStringBuilder builder = new SpannableStringBuilder();
-        builder.append(setClickableSpan(comment.fromUser));
+        builder.append(setClickableSpan(fcComment.fromFcUser));
 
         if (!TextUtils.isEmpty(toReplyName)) {
             builder.append(" 回复 ");
-            builder.append(setClickableSpan(comment.toUser));
+            builder.append(setClickableSpan(fcComment.toFcUser));
         }
         builder.append(": ");
         //转换表情字符
-        String contentBodyStr = comment.content;
+        String contentBodyStr = fcComment.content;
         builder.append(SpanUrlUtils.formatUrlString(contentBodyStr));
         commentTv.setText(builder);
 
@@ -168,13 +168,13 @@ public class CommentListView extends LinearLayout {
     }
 
     @NonNull
-    private SpannableString setClickableSpan(final User user) {
-        SpannableString subjectSpanText = new SpannableString(user.name);
+    private SpannableString setClickableSpan(final FcUser fcUser) {
+        SpannableString subjectSpanText = new SpannableString(fcUser.name);
         subjectSpanText.setSpan(new SpannableClickable(itemColor) {
                                     @Override
                                     public void onClick(View widget) {
                                         if (null != mUserClickListener) {
-                                            mUserClickListener.onUserClick(widget, user);
+                                            mUserClickListener.onUserClick(widget, fcUser);
                                         }
                                     }
                                 }, 0, subjectSpanText.length(),
@@ -183,7 +183,7 @@ public class CommentListView extends LinearLayout {
     }
 
     public interface OnUserClickListener {
-        void onUserClick(View v, User user);
+        void onUserClick(View v, FcUser fcUser);
     }
 
     public interface OnItemClickListener {

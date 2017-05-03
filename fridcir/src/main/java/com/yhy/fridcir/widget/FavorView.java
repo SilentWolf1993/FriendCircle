@@ -11,7 +11,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.yhy.fridcir.R;
-import com.yhy.fridcir.entity.FavorItem;
+import com.yhy.fridcir.entity.FcFavor;
 import com.yhy.fridcir.helper.FcHepler;
 import com.yhy.fridcir.spannable.CircleMovementMethod;
 import com.yhy.fridcir.spannable.ImgSpan;
@@ -22,7 +22,7 @@ import java.util.List;
 public class FavorView extends AppCompatTextView {
     private int itemColor;
     private int itemSelectorColor;
-    private List<FavorItem> mFavorList;
+    private List<FcFavor> mFavorList;
     private OnItemClickListener onItemClickListener;
 
     public OnItemClickListener getOnItemClickListener() {
@@ -58,21 +58,21 @@ public class FavorView extends AppCompatTextView {
         }
     }
 
-    public List<FavorItem> getFavorList() {
+    public List<FcFavor> getFavorList() {
         return mFavorList;
     }
 
-    public void setFavorList(List<FavorItem> favorList) {
+    public void setFavorList(List<FcFavor> favorList) {
         this.mFavorList = favorList;
         notifyDataSetChanged();
     }
 
-    public void addFavor(FavorItem favor) {
+    public void addFavor(FcFavor favor) {
         mFavorList.add(favor);
         notifyDataSetChanged();
     }
 
-    public void removeFavor(FavorItem favor) {
+    public void removeFavor(FcFavor favor) {
         mFavorList.remove(favor);
         notifyDataSetChanged();
     }
@@ -82,11 +82,11 @@ public class FavorView extends AppCompatTextView {
         if (mFavorList != null && mFavorList.size() > 0) {
             //添加点赞图标
             builder.append(setImageSpan());
-            FavorItem item = null;
+            FcFavor item = null;
             for (int i = 0; i < mFavorList.size(); i++) {
                 item = mFavorList.get(i);
                 if (item != null) {
-                    builder.append(setClickableSpan(item.user.name, i));
+                    builder.append(setClickableSpan(item.fcUser.name, i));
                     if (i != mFavorList.size() - 1) {
                         builder.append("、");
                     }

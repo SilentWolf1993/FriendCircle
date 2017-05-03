@@ -8,12 +8,12 @@ import java.util.List;
 /**
  * Created by HongYi Yan on 2017/4/28 0:02.
  */
-public class CircleItem {
+public class FcCircle {
     public String id;
     public String content;
-    public User fromUser;
+    public FcUser fromFcUser;
     public Date createTime;
     public List<ImageInfo> imgList;
-    public List<FavorItem> favorList;
-    public List<Comment> commentList;
+    public List<FcFavor> favorList;
+    public List<FcComment> fcCommentList;
 }

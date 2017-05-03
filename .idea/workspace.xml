@@ -6,13 +6,25 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="47fae0b3-59bc-441d-927e-bafe5e4c53c6" name="Default" comment="Extract common library.">
+    <list default="true" id="47fae0b3-59bc-441d-927e-bafe5e4c53c6" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/LICENSE" afterPath="$PROJECT_DIR$/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/yhy/friendcircle/App.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/yhy/friendcircle/App.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/yhy/friendcircle/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/yhy/friendcircle/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fridcir/build.gradle" afterPath="$PROJECT_DIR$/fridcir/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fridcir/src/main/res/layout/widget_input_comment.xml" afterPath="$PROJECT_DIR$/fridcir/src/main/res/layout/widget_input_comment.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/adapter/CircleAdapter.java" afterPath="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/adapter/CircleAdapter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/widget/CommentListView.java" afterPath="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/widget/CommentListView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/widget/FavorView.java" afterPath="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/widget/FavorView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/widget/FriendCircleView.java" afterPath="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/widget/FriendCircleView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gradlew" afterPath="$PROJECT_DIR$/gradlew" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/entity/CircleItem.java" afterPath="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/entity/FcCircle.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/entity/Comment.java" afterPath="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/entity/FcComment.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/entity/FavorItem.java" afterPath="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/entity/FcFavor.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/entity/User.java" afterPath="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/entity/FcUser.java" />
     </list>
     <ignored path="FriendCircle.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,7 +55,7 @@
     <favorites_list name="FriendCircle" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -2708,7 +2720,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="E:\Android\FriendCircle" value="5975099671897" />
+        <entry key="E:\Android\FriendCircle" value="5975117522044" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -3318,8 +3330,6 @@
         <option value="$PROJECT_DIR$/build.gradle" />
         <option value="$PROJECT_DIR$/fridcir/src/main/res/layout/item_circle_msg_rv_list.xml" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/yhy/friendcircle/App.java" />
-        <option value="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/adapter/CircleAdapter.java" />
         <option value="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/spannable/CircleMovementMethod.java" />
         <option value="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/spannable/SpannableClickable.java" />
         <option value="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/widget/CommentListView.java" />
@@ -3329,12 +3339,14 @@
         <option value="$PROJECT_DIR$/fridcir/src/main/res/layout/widget_circle_view.xml" />
         <option value="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/widget/CircleView.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
-        <option value="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/widget/FriendCircleView.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/yhy/friendcircle/MainActivity.java" />
         <option value="$PROJECT_DIR$/fridcir/src/main/res/values/ids.xml" />
         <option value="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/widget/ExpandTextView.java" />
         <option value="$PROJECT_DIR$/fridcir/src/main/res/values/attrs.xml" />
         <option value="$PROJECT_DIR$/fridcir/src/main/res/layout/widget_input_comment.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/yhy/friendcircle/App.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/yhy/friendcircle/MainActivity.java" />
+        <option value="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/widget/FriendCircleView.java" />
+        <option value="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/adapter/CircleAdapter.java" />
         <option value="$PROJECT_DIR$/fridcir/build.gradle" />
       </list>
     </option>
@@ -3384,8 +3396,8 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -3394,7 +3406,7 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="android.project.structure.last.selected" value="app" />
     <property name="android.project.structure.proportion" value="0.15" />
-    <property name="device.picker.selection" value="91QEBP63TVS5" />
+    <property name="device.picker.selection" value="192.168.54.101:5555" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi" />
   </component>
   <component name="RecentsManager">
@@ -3804,7 +3816,14 @@
       <option name="project" value="LOCAL" />
       <updated>1493779563148</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Extract common library.">
+      <created>1493779984579</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1493779984579</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -3818,7 +3837,6 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3282123" sideWeight="0.5030349" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40642458" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3282123" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -3827,6 +3845,7 @@
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26028278" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Freeline" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3282123" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -3840,7 +3859,7 @@
       <window_info id="CodotaView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3282123" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -3893,21 +3912,21 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/adapter/RvBindingAdapter.java" />
-    <entry file="file://$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/entity/CircleItem.java">
+    <entry file="file://$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/entity/FcCircle.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/entity/Comment.java">
+    <entry file="file://$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/entity/FcComment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="10" column="27" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/entity/User.java">
+    <entry file="file://$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/entity/FcUser.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
@@ -3949,7 +3968,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/entity/FavorItem.java">
+    <entry file="file://$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/entity/FcFavor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
@@ -4004,7 +4023,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
           <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4022,18 +4040,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yhy/friendcircle/App.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="40" column="12" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="12" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1142#1332#0" expanded="false" />
-            <element signature="e#1331#1332#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/spannable/SpannableClickable.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
@@ -4045,10 +4051,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
           <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
-          <folding>
-            <element signature="e#1171#1172#0" expanded="false" />
-            <element signature="e#1204#1205#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4095,10 +4097,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-889">
           <caret line="37" column="34" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
-          <folding>
-            <element signature="e#2253#2631#0" expanded="true" />
-            <element signature="e#2630#2631#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4113,32 +4111,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/adapter/CircleAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3840">
-          <caret line="195" column="0" selection-start-line="187" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/widget/FriendCircleView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="864">
-          <caret line="36" column="23" selection-start-line="36" selection-start-column="23" selection-end-line="36" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1386#1387#0" expanded="true" />
-            <element signature="e#1421#1422#0" expanded="true" />
-            <element signature="e#1499#1500#0" expanded="true" />
-            <element signature="e#1538#1539#0" expanded="true" />
-            <element signature="e#1817#1818#0" expanded="true" />
-            <element signature="e#1843#1844#0" expanded="true" />
-            <element signature="e#6719#6720#0" expanded="true" />
-            <element signature="e#6764#6765#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider editor-type-id="android-designer2">
         <state />
@@ -4150,33 +4122,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yhy/friendcircle/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#initData#0;class#MainActivity#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fridcir/src/main/res/values/attrs.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fridcir/src/main/res/values/ids.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="3" column="44" selection-start-line="3" selection-start-column="44" selection-end-line="3" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/fridcir/src/main/res/values/ids.xml" />
     <entry file="file://$PROJECT_DIR$/fridcir/src/main/res/layout/widget_expand_textview.xml">
       <provider editor-type-id="android-designer2">
         <state />
@@ -4184,7 +4137,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="271">
           <caret line="16" column="33" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="33" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -4214,14 +4166,48 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1176">
           <caret line="49" column="39" selection-start-line="49" selection-start-column="39" selection-end-line="49" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yhy/friendcircle/App.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="25" column="12" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yhy/friendcircle/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="43" column="72" selection-start-line="43" selection-start-column="72" selection-end-line="43" selection-end-column="72" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#initData#0;class#MainActivity#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/widget/FriendCircleView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="36" column="18" selection-start-line="36" selection-start-column="18" selection-end-line="36" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/adapter/CircleAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="90" column="48" selection-start-line="90" selection-start-column="48" selection-end-line="90" selection-end-column="48" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fridcir/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="41" column="22" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
+        <state relative-caret-position="423">
+          <caret line="42" column="31" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
           <folding />
         </state>
       </provider>

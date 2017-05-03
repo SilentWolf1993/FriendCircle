@@ -3,7 +3,7 @@ package com.yhy.fridcir.entity;
 /**
  * Created by HongYi Yan on 2017/4/27 23:59.
  */
-public class User {
+public class FcUser {
     public String id;
     public String name;
     public String avatar;
@@ -13,9 +13,9 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        User user = (User) o;
+        FcUser fcUser = (FcUser) o;
 
-        return id != null ? id.equals(user.id) : user.id == null;
+        return id != null ? id.equals(fcUser.id) : fcUser.id == null;
     }
 
     @Override
