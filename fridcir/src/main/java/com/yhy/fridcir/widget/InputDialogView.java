@@ -16,6 +16,8 @@ import com.yhy.fridcir.R;
  * Created by HongYi Yan on 2017/5/2 15:00.
  */
 public class InputDialogView {
+    private static Handler handler = new Handler();
+    private static Runnable runnable;
 
     public static void showInputView(Context ctx, String hint, final OnCommentDialogListener listener) {
         final Dialog mDialog = new Dialog(ctx, android.R.style.Theme_Translucent_NoTitleBar);
@@ -34,6 +36,9 @@ public class InputDialogView {
             @Override
             public void onClick(View v) {
                 mDialog.dismiss();
+                //取消滚动
+                cancelScroll();
+
                 if (listener != null) {
                     listener.onDismiss();
                 }
@@ -65,7 +70,7 @@ public class InputDialogView {
         });
         mDialog.show();
 
-        new Handler().postDelayed(new Runnable() {
+        runnable = new Runnable() {
             @Override
             public void run() {
                 if (listener != null) {
@@ -75,7 +80,15 @@ public class InputDialogView {
                     listener.onShow(coord);
                 }
             }
-        }, 600);
+        };
+
+        handler.postDelayed(runnable, 600);
+    }
+
+    public static void cancelScroll() {
+        if (null != runnable) {
+            handler.removeCallbacks(runnable);
+        }
     }
 
     public interface OnCommentDialogListener {

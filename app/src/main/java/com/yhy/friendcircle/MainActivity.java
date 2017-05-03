@@ -1,45 +1,22 @@
 package com.yhy.friendcircle;
 
-import android.app.Dialog;
-import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
-import android.databinding.ViewDataBinding;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import android.util.Log;
-import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.lzy.ninegrid.ImageInfo;
-import com.lzy.ninegrid.NineGridView;
-import com.lzy.ninegrid.preview.NineGridViewClickAdapter;
-import com.yhy.fridcir.adapter.CircleAdapter;
 import com.yhy.fridcir.entity.CircleItem;
 import com.yhy.fridcir.entity.Comment;
 import com.yhy.fridcir.entity.FavorItem;
 import com.yhy.fridcir.entity.User;
-import com.yhy.fridcir.widget.CommentListView;
-import com.yhy.fridcir.widget.FavorCommentPop;
-import com.yhy.fridcir.widget.FavorView;
-import com.yhy.fridcir.widget.InputDialogView;
+import com.yhy.fridcir.widget.FriendCircleView;
 import com.yhy.friendcircle.databinding.MainActivityBinding;
 import com.yhy.friendcircle.global.ImgUrls;
-import com.yhy.widget.rv.div.RvDivider;
+import com.yhy.utils.core.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
@@ -51,8 +28,6 @@ public class MainActivity extends AppCompatActivity {
     private List<CircleItem> mCircleList;
     private Random mRand;
 
-    private CircleAdapter mAdapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,85 +35,28 @@ public class MainActivity extends AppCompatActivity {
 
         mCurUser = ((App) getApplication()).getUser();
 
-        mBinding.rvCircle.setLayoutManager(new LinearLayoutManager(this));
-        RecyclerView.RecycledViewPool rvPool = mBinding.rvCircle.getRecycledViewPool();
-        if (null != rvPool) {
-            rvPool.setMaxRecycledViews(0, 10);
-            mBinding.rvCircle.setRecycledViewPool(rvPool);
-        }
-
         mRand = new Random();
 
         initData();
 
-        mAdapter = new CircleAdapter(this, mCircleList, mCurUser);
-        mAdapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN);
+        mBinding.cvContent.setDataList(mCircleList, mCurUser);
 
-        mAdapter.setOnFavorListener(new CircleAdapter.OnFavorListener() {
+        mBinding.cvContent.setOnFavorListener(new FriendCircleView.OnFavorListener() {
             @Override
-            public void onFavor(FavorView favorView, CircleItem item, FavorItem favorItem) {
-                if (null == favorItem) {
-                    //说明未赞过
-                    //请求服务器添加点赞数据
-                    favorItem = new FavorItem();
-                    favorItem.id = UUID.randomUUID().toString();
-                    favorItem.user = mCurUser;
-                    favorView.addFavor(favorItem);
-                } else {
-                    //请求服务器删除点赞数据
-                    favorView.removeFavor(favorItem);
-                }
+            public void onFavor(CircleItem item, FavorItem favorItem) {
+                ToastUtils.shortToast("赞");
+            }
+
+            @Override
+            public void onCancel(CircleItem circleItem, FavorItem favorItem) {
+                ToastUtils.shortToast("取消赞");
             }
         });
 
-        mAdapter.setOnCommentClickListener(new CircleAdapter.OnCommentClickListener() {
+        mBinding.cvContent.setOnCommentListener(new FriendCircleView.OnCommentListener() {
             @Override
-            public void onCommentClick(CircleItem item, User toUser, CommentListView clvComment, View alignView) {
-                //请求服务器添加评论
-                commentAndReply(toUser, clvComment, alignView);
-            }
-        });
-
-        mBinding.rvCircle.setAdapter(mAdapter);
-    }
-
-    private void commentAndReply(final User toUser, final CommentListView clvComment, final View alignView) {
-        final int[] coord = new int[2];
-        if (null != alignView) {
-            alignView.getLocationOnScreen(coord);
-        }
-        String hint = "说点什么吧...";
-        if (null != toUser) {
-            hint = "回复" + toUser.name + ":";
-        }
-
-        InputDialogView.showInputView(this, hint, new InputDialogView.OnCommentDialogListener() {
-            @Override
-            public void onPublish(Dialog dialog, EditText etInput, TextView btn) {
-                dialog.dismiss();
-
-                Comment comment = new Comment();
-                comment.id = UUID.randomUUID().toString();
-                comment.content = etInput.getText().toString();
-                comment.fromUser = mCurUser;
-                comment.toUser = toUser;
-
-                clvComment.addComment(comment);
-            }
-
-            @Override
-            public void onShow(int[] ivPosition) {
-                // 点击某条评论则这条评论刚好在输入框上面，点击评论按钮则输入框刚好挡住按钮
-                Log.i(TAG, "commentBtn : " + coord[1]);
-                Log.i(TAG, "inputArea : " + ivPosition[1]);
-
-                int span = alignView.getHeight();
-                int dy = coord[1] + span - ivPosition[1];
-                mBinding.rvCircle.smoothScrollBy(0, dy, new AccelerateDecelerateInterpolator());
-            }
-
-            @Override
-            public void onDismiss() {
+            public void onCommentClick(Comment comment) {
+                ToastUtils.shortToast(comment.content);
             }
         });
     }

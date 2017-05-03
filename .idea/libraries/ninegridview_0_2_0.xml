@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="ninegridview-0.2.0">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.android/build-cache/4c3b9683b3a343ce2db2d74ad738fe7dcd809c6b/output/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.android/build-cache/4c3b9683b3a343ce2db2d74ad738fe7dcd809c6b/output/res" />
+      <root url="file://D:/Android_SDK/.android/build-cache/32d756d2199010366c7d25521039730bb8528a57/output/res" />
+      <root url="jar://D:/Android_SDK/.android/build-cache/32d756d2199010366c7d25521039730bb8528a57/output/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
