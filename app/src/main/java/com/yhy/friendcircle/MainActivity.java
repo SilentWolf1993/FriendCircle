@@ -97,6 +97,9 @@ public class MainActivity extends AppCompatActivity {
             }
 
             for (int j = 0; j < mRand.nextInt(10); j++) {
+                if (i == 0) {
+                    continue;
+                }
                 fcUser = new FcUser();
                 fcUser.id = UUID.randomUUID().toString();
                 fcUser.name = "点赞" + j;

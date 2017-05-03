@@ -136,6 +136,9 @@ public class FriendCircleView extends LinearLayout {
                         mOnFavorListener.onFavor(item, fcFavor, false);
                     }
                     favorView.addFavor(fcFavor);
+                    if (favorView.getVisibility() != VISIBLE) {
+                        favorView.setVisibility(VISIBLE);
+                    }
                 } else {
                     //回调
                     if (null != mOnFavorListener) {
