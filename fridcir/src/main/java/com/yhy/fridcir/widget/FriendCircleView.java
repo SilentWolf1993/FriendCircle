@@ -65,7 +65,7 @@ public class FriendCircleView extends LinearLayout {
     }
 
     private void initAttrs(AttributeSet attrs) {
-        TypedArray ta = mCtx.obtainStyledAttributes(attrs, R.styleable.FavorViewAttrs);
+        TypedArray ta = mCtx.obtainStyledAttributes(attrs, R.styleable.FriendCircleViewAttrs);
         mClickUserComment = ta.getBoolean(R.styleable.FriendCircleViewAttrs_click_user_comment, false);
         ta.recycle();
     }

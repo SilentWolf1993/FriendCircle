@@ -90,19 +90,6 @@ public class CircleAdapter extends BaseQuickAdapter<FcCircle, CircleAdapter.Circ
         if (null != item.fcCommentList && !item.fcCommentList.isEmpty()) {
             helper.clvComment.setVisibility(View.VISIBLE);
             helper.clvComment.setCommentList(item.fcCommentList);
-
-            helper.clvComment.setOnUserClickListener(new CommentListView.OnUserClickListener() {
-                @Override
-                public void onUserClick(View v, FcUser fcUser) {
-                    if (mClickUserComment && null != mCommentClickListener) {
-                        mCommentClickListener.onCommentClick(item, null, helper.clvComment, v);
-                    }
-
-                    if (null != mOnUserClickListener) {
-                        mOnUserClickListener.onUserClcik(v, item, fcUser);
-                    }
-                }
-            });
         } else {
             helper.clvComment.setVisibility(View.GONE);
         }
@@ -156,6 +143,19 @@ public class CircleAdapter extends BaseQuickAdapter<FcCircle, CircleAdapter.Circ
             public void onItemClick(View v, int position) {
                 if (null != mCommentClickListener) {
                     mCommentClickListener.onCommentClick(item, item.fcCommentList.get(position).fromFcUser, helper.clvComment, v);
+                }
+            }
+        });
+
+        helper.clvComment.setOnUserClickListener(new CommentListView.OnUserClickListener() {
+            @Override
+            public void onUserClick(View v, FcUser fcUser) {
+                if (mClickUserComment && null != mCommentClickListener) {
+                    mCommentClickListener.onCommentClick(item, fcUser, helper.clvComment, v);
+                }
+
+                if (null != mOnUserClickListener) {
+                    mOnUserClickListener.onUserClcik(v, item, fcUser);
                 }
             }
         });
