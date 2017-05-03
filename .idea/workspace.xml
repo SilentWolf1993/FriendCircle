@@ -9,8 +9,10 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="47fae0b3-59bc-441d-927e-bafe5e4c53c6" name="Default" comment="">
+    <list default="true" id="47fae0b3-59bc-441d-927e-bafe5e4c53c6" name="Default" comment="Extract common library.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fridcir/build.gradle" afterPath="$PROJECT_DIR$/fridcir/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fridcir/src/main/res/layout/widget_input_comment.xml" afterPath="$PROJECT_DIR$/fridcir/src/main/res/layout/widget_input_comment.xml" />
     </list>
     <ignored path="FriendCircle.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -2706,7 +2708,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="E:\Android\FriendCircle" value="5975093068310" />
+        <entry key="E:\Android\FriendCircle" value="5975099671897" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -3283,7 +3285,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/btn_send_bg_disabled_shape.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/btn_send_bg_selector.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/btn_send_text_color_disabled_shape.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi/btn_send_text_color_enabled_shape.xml" />
@@ -3324,7 +3325,6 @@
         <option value="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/widget/CommentListView.java" />
         <option value="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/widget/FavorCommentPop.java" />
         <option value="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/widget/FavorView.java" />
-        <option value="$PROJECT_DIR$/fridcir/build.gradle" />
         <option value="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/widget/InputDialogView.java" />
         <option value="$PROJECT_DIR$/fridcir/src/main/res/layout/widget_circle_view.xml" />
         <option value="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/widget/CircleView.java" />
@@ -3334,6 +3334,8 @@
         <option value="$PROJECT_DIR$/fridcir/src/main/res/values/ids.xml" />
         <option value="$PROJECT_DIR$/fridcir/src/main/java/com/yhy/fridcir/widget/ExpandTextView.java" />
         <option value="$PROJECT_DIR$/fridcir/src/main/res/values/attrs.xml" />
+        <option value="$PROJECT_DIR$/fridcir/src/main/res/layout/widget_input_comment.xml" />
+        <option value="$PROJECT_DIR$/fridcir/build.gradle" />
       </list>
     </option>
   </component>
@@ -3795,7 +3797,14 @@
       <option name="project" value="LOCAL" />
       <updated>1493777751868</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Extract common library.">
+      <created>1493779563148</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1493779563148</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -3922,16 +3931,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-761">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fridcir/src/main/res/layout/widget_input_comment.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="68" column="36" selection-start-line="68" selection-start-column="36" selection-end-line="68" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -4075,14 +4074,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fridcir/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="45" column="39" selection-start-line="45" selection-start-column="39" selection-end-line="45" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
@@ -4213,6 +4204,25 @@
             <element signature="e#4067#4068#0" expanded="true" />
             <element signature="e#4119#4120#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fridcir/src/main/res/layout/widget_input_comment.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1176">
+          <caret line="49" column="39" selection-start-line="49" selection-start-column="39" selection-end-line="49" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fridcir/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="41" column="22" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>

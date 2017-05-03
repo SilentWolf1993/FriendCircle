@@ -50,7 +50,7 @@
                 android:hint="说点什么吧..."
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
-                android:textColor="#8290AF"
+                android:textColor="#333"
                 android:textSize="14dp"/>
 
             <View
