@@ -30,7 +30,7 @@ public class CommentListView extends LinearLayout {
     private OnUserClickListener mUserClickListener;
     private OnItemClickListener mItemClickListener;
     private OnItemLongClickListener mItemLongClickListener;
-    private List<FcComment> mDatas;
+    private List<FcComment> mCommentList;
     private LayoutInflater layoutInflater;
 
     public void setOnUserClickListener(OnUserClickListener listener) {
@@ -46,10 +46,7 @@ public class CommentListView extends LinearLayout {
     }
 
     public void setCommentList(List<FcComment> datas) {
-        if (null == mDatas) {
-            mDatas = new ArrayList<FcComment>();
-        }
-        mDatas = datas;
+        mCommentList = datas;
         notifyDataSetChanged();
     }
 
@@ -57,15 +54,23 @@ public class CommentListView extends LinearLayout {
         if (null == fcComment) {
             return;
         }
-        if (null == mDatas) {
-            mDatas = new ArrayList<>();
+        if (null == mCommentList) {
+            mCommentList = new ArrayList<>();
         }
-        mDatas.add(fcComment);
+        mCommentList.add(fcComment);
+        notifyDataSetChanged();
+    }
+
+    public void removeComment(FcComment fcComment) {
+        if (null == fcComment || null == mCommentList) {
+            return;
+        }
+        mCommentList.remove(fcComment);
         notifyDataSetChanged();
     }
 
     public List<FcComment> getCommentList() {
-        return mDatas;
+        return mCommentList;
     }
 
     public CommentListView(Context context) {
@@ -96,11 +101,11 @@ public class CommentListView extends LinearLayout {
 
     public void notifyDataSetChanged() {
         removeAllViews();
-        if (mDatas == null || mDatas.size() == 0) {
+        if (mCommentList == null || mCommentList.size() == 0) {
             return;
         }
         LayoutParams layoutParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        for (int i = 0; i < mDatas.size(); i++) {
+        for (int i = 0; i < mCommentList.size(); i++) {
             final int index = i;
             View view = getView(index);
             if (view == null) {
@@ -120,7 +125,7 @@ public class CommentListView extends LinearLayout {
         TextView commentTv = (TextView) convertView.findViewById(R.id.commentTv);
         final CircleMovementMethod circleMovementMethod = new CircleMovementMethod(itemSelectorColor, itemSelectorColor);
 
-        final FcComment fcComment = mDatas.get(position);
+        final FcComment fcComment = mCommentList.get(position);
 
         String toReplyName = "";
         if (null != fcComment.toFcUser) {

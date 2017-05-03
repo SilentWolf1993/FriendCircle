@@ -12,11 +12,12 @@ import android.view.View;
 
 import com.yhy.fridcir.R;
 import com.yhy.fridcir.entity.FcFavor;
-import com.yhy.fridcir.helper.FcHepler;
+import com.yhy.fridcir.helper.FcHelper;
 import com.yhy.fridcir.spannable.CircleMovementMethod;
 import com.yhy.fridcir.spannable.ImgSpan;
 import com.yhy.fridcir.spannable.SpannableClickable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FavorView extends AppCompatTextView {
@@ -68,11 +69,20 @@ public class FavorView extends AppCompatTextView {
     }
 
     public void addFavor(FcFavor favor) {
+        if (null == favor) {
+            return;
+        }
+        if (null == mFavorList) {
+            mFavorList = new ArrayList<>();
+        }
         mFavorList.add(favor);
         notifyDataSetChanged();
     }
 
     public void removeFavor(FcFavor favor) {
+        if (null == favor || null == mFavorList) {
+            return;
+        }
         mFavorList.remove(favor);
         notifyDataSetChanged();
     }
@@ -101,7 +111,7 @@ public class FavorView extends AppCompatTextView {
     private SpannableString setImageSpan() {
         String text = "  ";
         SpannableString imgSpanText = new SpannableString(text);
-        imgSpanText.setSpan(new ImgSpan(FcHepler.getInstance().getApplication(), R.mipmap.ic_favor_list),
+        imgSpanText.setSpan(new ImgSpan(FcHelper.getInstance().getApplication(), R.mipmap.ic_favor_list),
                 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         return imgSpanText;
     }

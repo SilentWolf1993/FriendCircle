@@ -11,7 +11,7 @@ import android.view.MotionEvent;
 import android.widget.TextView;
 
 import com.yhy.fridcir.R;
-import com.yhy.fridcir.helper.FcHepler;
+import com.yhy.fridcir.helper.FcHelper;
 
 public class CircleMovementMethod extends BaseMovementMethod {
     public final String TAG = CircleMovementMethod.class.getSimpleName();
@@ -44,8 +44,8 @@ public class CircleMovementMethod extends BaseMovementMethod {
     }
 
     public CircleMovementMethod() {
-        this.textViewBgColor = FcHepler.getInstance().getApplication().getResources().getColor(DEFAULT_COLOR_ID);
-        this.clickableSpanBgClor = FcHepler.getInstance().getApplication().getResources().getColor(DEFAULT_CLICKABLEA_COLOR_ID);
+        this.textViewBgColor = FcHelper.getInstance().getApplication().getResources().getColor(DEFAULT_COLOR_ID);
+        this.clickableSpanBgClor = FcHelper.getInstance().getApplication().getResources().getColor(DEFAULT_CLICKABLEA_COLOR_ID);
     }
 
     /**
@@ -53,7 +53,7 @@ public class CircleMovementMethod extends BaseMovementMethod {
      */
     public CircleMovementMethod(int clickableSpanBgClor) {
         this.clickableSpanBgClor = clickableSpanBgClor;
-        this.textViewBgColor = FcHepler.getInstance().getApplication().getResources().getColor(DEFAULT_COLOR_ID);
+        this.textViewBgColor = FcHelper.getInstance().getApplication().getResources().getColor(DEFAULT_COLOR_ID);
     }
 
     /**

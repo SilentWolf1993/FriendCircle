@@ -5,22 +5,22 @@ import android.app.Application;
 /**
  * Created by HongYi Yan on 2017/4/28 11:17.
  */
-public class FcHepler {
-    private static volatile FcHepler instance;
+public class FcHelper {
+    private static volatile FcHelper instance;
 
     private Application application;
 
-    private FcHepler() {
+    private FcHelper() {
         if (null != instance) {
             throw new RuntimeException("Can not create multiple instance for singleton class FcHelper.");
         }
     }
 
-    public static FcHepler getInstance() {
+    public static FcHelper getInstance() {
         if (null == instance) {
-            synchronized (FcHepler.class) {
+            synchronized (FcHelper.class) {
                 if (null == instance) {
-                    instance = new FcHepler();
+                    instance = new FcHelper();
                 }
             }
         }

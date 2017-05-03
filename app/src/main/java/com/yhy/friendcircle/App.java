@@ -12,7 +12,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.lzy.ninegrid.NineGridView;
 import com.orhanobut.logger.Logger;
 import com.yhy.fridcir.entity.FcUser;
-import com.yhy.fridcir.helper.FcHepler;
+import com.yhy.fridcir.helper.FcHelper;
 import com.yhy.friendcircle.global.ImgUrls;
 import com.yhy.utils.core.ImgUtils;
 import com.yhy.utils.core.ToastUtils;
@@ -40,7 +40,7 @@ public class App extends Application {
 
         ToastUtils.init(this);
 
-        FcHepler.getInstance().init(this);
+        FcHelper.getInstance().init(this);
 
         ImgUtils.init(new ImgUtils.ImgLoader() {
             @Override

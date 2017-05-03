@@ -5,7 +5,7 @@ import android.text.style.ClickableSpan;
 import android.view.View;
 
 import com.yhy.fridcir.R;
-import com.yhy.fridcir.helper.FcHepler;
+import com.yhy.fridcir.helper.FcHelper;
 
 public abstract class SpannableClickable extends ClickableSpan implements View.OnClickListener {
 
@@ -16,7 +16,7 @@ public abstract class SpannableClickable extends ClickableSpan implements View.O
     private int textColor;
 
     public SpannableClickable() {
-        this.textColor = FcHepler.getInstance().getApplication().getResources().getColor(DEFAULT_COLOR_ID);
+        this.textColor = FcHelper.getInstance().getApplication().getResources().getColor(DEFAULT_COLOR_ID);
     }
 
     public SpannableClickable(int textColor) {

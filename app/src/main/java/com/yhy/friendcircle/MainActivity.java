@@ -43,19 +43,18 @@ public class MainActivity extends AppCompatActivity {
 
         mBinding.cvContent.setOnFavorListener(new FriendCircleView.OnFavorListener() {
             @Override
-            public void onFavor(FcCircle item, FcFavor fcFavor) {
-                ToastUtils.shortToast("赞");
-            }
-
-            @Override
-            public void onCancel(FcCircle fcCircle, FcFavor fcFavor) {
-                ToastUtils.shortToast("取消赞");
+            public void onFavor(FcCircle item, FcFavor fcFavor, boolean isCancel) {
+                if (isCancel) {
+                    ToastUtils.shortToast("取消赞");
+                } else {
+                    ToastUtils.shortToast("赞");
+                }
             }
         });
 
         mBinding.cvContent.setOnCommentListener(new FriendCircleView.OnCommentListener() {
             @Override
-            public void onCommentClick(FcComment fcComment) {
+            public void onCommentClick(FcCircle fcCircle, FcComment fcComment) {
                 ToastUtils.shortToast(fcComment.content);
             }
         });

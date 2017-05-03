@@ -37,14 +37,17 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class CircleAdapter extends BaseQuickAdapter<FcCircle, CircleAdapter.CircleViewHolder> {
     private Context mCtx;
     private FcUser mCurrentFcUser;
+    private boolean mClickUserComment;
     private Map<FcCircle, FavorCommentPop> mPopMap;
     private OnFavorListener mFavorListener;
     private OnCommentClickListener mCommentClickListener;
+    private OnUserClickListener mOnUserClickListener;
 
-    public CircleAdapter(Context ctx, @Nullable List<FcCircle> data, FcUser currentFcUser) {
-        super(R.layout.item_circle_msg_rv_list, data);
+    public CircleAdapter(Context ctx, @Nullable List<FcCircle> data, FcUser currentFcUser, boolean clickUserComment) {
+        super(R.layout.item_circle_rv_list, data);
         mCtx = ctx;
         mCurrentFcUser = currentFcUser;
+        mClickUserComment = clickUserComment;
         mPopMap = new HashMap<>();
     }
 
@@ -87,6 +90,19 @@ public class CircleAdapter extends BaseQuickAdapter<FcCircle, CircleAdapter.Circ
         if (null != item.fcCommentList && !item.fcCommentList.isEmpty()) {
             helper.clvComment.setVisibility(View.VISIBLE);
             helper.clvComment.setCommentList(item.fcCommentList);
+
+            helper.clvComment.setOnUserClickListener(new CommentListView.OnUserClickListener() {
+                @Override
+                public void onUserClick(View v, FcUser fcUser) {
+                    if (mClickUserComment && null != mCommentClickListener) {
+                        mCommentClickListener.onCommentClick(item, null, helper.clvComment, v);
+                    }
+
+                    if (null != mOnUserClickListener) {
+                        mOnUserClickListener.onUserClcik(v, item, fcUser);
+                    }
+                }
+            });
         } else {
             helper.clvComment.setVisibility(View.GONE);
         }
@@ -194,11 +210,19 @@ public class CircleAdapter extends BaseQuickAdapter<FcCircle, CircleAdapter.Circ
         mCommentClickListener = listener;
     }
 
+    public void setOnUserClickListener(OnUserClickListener listener) {
+        mOnUserClickListener = listener;
+    }
+
     public interface OnFavorListener {
         void onFavor(FavorView favorView, FcCircle fcCircle, FcFavor fcFavor);
     }
 
     public interface OnCommentClickListener {
         void onCommentClick(FcCircle fcCircle, FcUser toFcUser, CommentListView clvComment, View alignView);
+    }
+
+    public interface OnUserClickListener {
+        void onUserClcik(View v, FcCircle fcCircle, FcUser fcUser);
     }
 }
