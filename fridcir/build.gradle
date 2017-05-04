@@ -35,14 +35,15 @@ dependencies {
     compile 'com.lzy.widget:ninegridview:0.2.0'
     compile 'com.yhy.widget:view-core:1.0.3'
     compile 'com.orhanobut:logger:1.15'
-    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.14'
+//    compile 'io.github.rockerhieu:emojiconize:1.4.2'
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.15'
 }
 
 publish {
     userOrg = 'yhyzgn'
     groupId = 'com.yhy.fridcir'
     artifactId = 'fridcir'
-    publishVersion = '1.0.3'
+    publishVersion = '1.0.4'
     desc = 'A simgple FriendCircle same as WeChat.'
     website = 'https://github.com/SilentWolf1993/FriendCircle'
 }

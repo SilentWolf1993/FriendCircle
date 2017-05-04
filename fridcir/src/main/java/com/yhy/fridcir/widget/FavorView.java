@@ -7,11 +7,13 @@ import android.support.v7.widget.AppCompatTextView;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 
 import com.yhy.fridcir.R;
 import com.yhy.fridcir.entity.FcFavor;
+import com.yhy.fridcir.entity.FcUser;
 import com.yhy.fridcir.helper.FcHelper;
 import com.yhy.fridcir.spannable.CircleMovementMethod;
 import com.yhy.fridcir.spannable.ImgSpan;
@@ -95,8 +97,8 @@ public class FavorView extends AppCompatTextView {
             FcFavor item = null;
             for (int i = 0; i < mFavorList.size(); i++) {
                 item = mFavorList.get(i);
-                if (item != null) {
-                    builder.append(setClickableSpan(item.fcUser.name, i));
+                if (null != item && null != item.fcUser && !TextUtils.isEmpty(item.fcUser.name)) {
+                    builder.append(setClickableSpan(item.fcUser, i));
                     if (i != mFavorList.size() - 1) {
                         builder.append("、");
                     }
@@ -117,13 +119,13 @@ public class FavorView extends AppCompatTextView {
     }
 
     @NonNull
-    private SpannableString setClickableSpan(String textStr, final int position) {
-        SpannableString subjectSpanText = new SpannableString(textStr);
+    private SpannableString setClickableSpan(final FcUser fcUser, final int position) {
+        SpannableString subjectSpanText = new SpannableString(fcUser.name);
         subjectSpanText.setSpan(new SpannableClickable(itemColor) {
                                     @Override
-                                    public void onClick(View widget) {
+                                    public void onClick(View v) {
                                         if (onItemClickListener != null) {
-                                            onItemClickListener.onClick(position);
+                                            onItemClickListener.onClick(v, fcUser, position);
                                         }
                                     }
                                 }, 0, subjectSpanText.length(),
@@ -133,6 +135,6 @@ public class FavorView extends AppCompatTextView {
 
 
     public interface OnItemClickListener {
-        void onClick(int position);
+        void onClick(View v, FcUser fcUser, int position);
     }
 }

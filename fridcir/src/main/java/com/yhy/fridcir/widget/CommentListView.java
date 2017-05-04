@@ -133,13 +133,16 @@ public class CommentListView extends LinearLayout {
         }
 
         SpannableStringBuilder builder = new SpannableStringBuilder();
-        builder.append(setClickableSpan(fcComment.fromFcUser));
+        if (null != fcComment && null != fcComment.fromFcUser && !TextUtils.isEmpty(fcComment.fromFcUser.name)) {
+            builder.append(setClickableSpan(fcComment.fromFcUser));
+        }
 
         if (!TextUtils.isEmpty(toReplyName)) {
             builder.append(" 回复 ");
             builder.append(setClickableSpan(fcComment.toFcUser));
         }
         builder.append(": ");
+
         //转换表情字符
         String contentBodyStr = fcComment.content;
         builder.append(SpanUrlUtils.formatUrlString(contentBodyStr));

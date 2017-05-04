@@ -118,6 +118,19 @@ public class CircleAdapter extends BaseQuickAdapter<FcCircle, CircleAdapter.Circ
             }
         });
 
+        helper.fvFavorUsers.setOnItemClickListener(new FavorView.OnItemClickListener() {
+            @Override
+            public void onClick(View v, FcUser fcUser, int position) {
+                if (mClickUserComment && null != mCommentClickListener) {
+                    mCommentClickListener.onComment(item, fcUser, v, helper.clvComment, getPositionByItem(item));
+                }
+
+                if (null != mOnUserClickListener) {
+                    mOnUserClickListener.onUserClcik(v, item, fcUser);
+                }
+            }
+        });
+
         helper.clvComment.setOnItemClickListener(new CommentListView.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
