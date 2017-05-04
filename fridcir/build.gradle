@@ -42,7 +42,7 @@ publish {
     userOrg = 'yhyzgn'
     groupId = 'com.yhy.fridcir'
     artifactId = 'fridcir'
-    publishVersion = '1.0.2'
+    publishVersion = '1.0.3'
     desc = 'A simgple FriendCircle same as WeChat.'
     website = 'https://github.com/SilentWolf1993/FriendCircle'
 }
