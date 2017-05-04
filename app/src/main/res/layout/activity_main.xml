@@ -12,8 +12,7 @@
         <com.yhy.fridcir.widget.FriendCircleView
             android:id="@+id/cv_content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:click_user_comment="true"/>
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 </layout>

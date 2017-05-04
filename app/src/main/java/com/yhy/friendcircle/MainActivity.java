@@ -3,12 +3,15 @@ package com.yhy.friendcircle;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.lzy.ninegrid.ImageInfo;
 import com.yhy.fridcir.entity.FcCircle;
 import com.yhy.fridcir.entity.FcComment;
 import com.yhy.fridcir.entity.FcFavor;
 import com.yhy.fridcir.entity.FcUser;
+import com.yhy.fridcir.widget.CommentListView;
+import com.yhy.fridcir.widget.FavorView;
 import com.yhy.fridcir.widget.FriendCircleView;
 import com.yhy.friendcircle.databinding.MainActivityBinding;
 import com.yhy.friendcircle.global.ImgUrls;
@@ -43,19 +46,38 @@ public class MainActivity extends AppCompatActivity {
 
         mBinding.cvContent.setOnFavorListener(new FriendCircleView.OnFavorListener() {
             @Override
-            public void onFavor(FcCircle item, FcFavor fcFavor, boolean isCancel) {
-                if (isCancel) {
-                    ToastUtils.shortToast("取消赞");
-                } else {
-                    ToastUtils.shortToast("赞");
-                }
+            public void onFavor(FavorView favorView, FcCircle fcCircle, int itemPosition) {
+                FcFavor fcFavor = new FcFavor();
+                fcFavor.id = UUID.randomUUID().toString();
+                fcFavor.fcUser = mCurFcUser;
+                mBinding.cvContent.addFavor(favorView, fcFavor, itemPosition);
+            }
+
+            @Override
+            public void onCancel(FavorView favorView, FcCircle fcCircle, FcFavor fcFavor, int itemPosition) {
+                mBinding.cvContent.removeFavor(favorView, fcFavor, itemPosition);
             }
         });
 
         mBinding.cvContent.setOnCommentListener(new FriendCircleView.OnCommentListener() {
             @Override
-            public void onCommentClick(FcCircle fcCircle, FcComment fcComment) {
-                ToastUtils.shortToast(fcComment.content);
+            public void onComment(FcCircle fcCircle, FcComment fcComment, CommentListView clvComment, int itemPosition) {
+                fcComment.id = UUID.randomUUID().toString();
+                mBinding.cvContent.addComment(clvComment, fcComment, itemPosition);
+            }
+        });
+
+        mBinding.cvContent.setOnCommentItemLongClickListener(new FriendCircleView.OnCommentItemLongClickListener() {
+            @Override
+            public void onItemLongClick(FcCircle fcCircle, FcComment fcComment, CommentListView clvComment, int itemPosition) {
+                mBinding.cvContent.removeComment(clvComment, fcComment, itemPosition);
+            }
+        });
+
+        mBinding.cvContent.setOnUserClickListener(new FriendCircleView.OnUserClickListener() {
+            @Override
+            public void onUserClcik(View v, FcCircle fcCircle, FcUser fcUser) {
+                ToastUtils.shortToast(fcUser.name);
             }
         });
     }

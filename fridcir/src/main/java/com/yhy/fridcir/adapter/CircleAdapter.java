@@ -15,6 +15,7 @@ import com.lzy.ninegrid.NineGridView;
 import com.lzy.ninegrid.preview.NineGridViewClickAdapter;
 import com.yhy.fridcir.R;
 import com.yhy.fridcir.entity.FcCircle;
+import com.yhy.fridcir.entity.FcComment;
 import com.yhy.fridcir.entity.FcFavor;
 import com.yhy.fridcir.entity.FcUser;
 import com.yhy.fridcir.utils.SpanUrlUtils;
@@ -40,8 +41,9 @@ public class CircleAdapter extends BaseQuickAdapter<FcCircle, CircleAdapter.Circ
     private boolean mClickUserComment;
     private Map<FcCircle, FavorCommentPop> mPopMap;
     private OnFavorListener mFavorListener;
-    private OnCommentClickListener mCommentClickListener;
+    private OnCommentListener mCommentClickListener;
     private OnUserClickListener mOnUserClickListener;
+    private OnCommentItemLongClickListener mOnCommentItemLongClickListener;
 
     public CircleAdapter(Context ctx, @Nullable List<FcCircle> data, FcUser currentFcUser, boolean clickUserComment) {
         super(R.layout.item_circle_rv_list, data);
@@ -73,33 +75,11 @@ public class CircleAdapter extends BaseQuickAdapter<FcCircle, CircleAdapter.Circ
 
         helper.tvTime.setText(DateUtils.friendlyDate(item.createTime));
 
-        if ((null == item.favorList || item.favorList.isEmpty()) && (null == item.fcCommentList || item.fcCommentList.isEmpty())) {
-            //隐藏评论区域
-            helper.llCommentFavorArea.setVisibility(View.GONE);
-        } else {
-            helper.llCommentFavorArea.setVisibility(View.VISIBLE);
-        }
+        showOrHiddenFavorComment(item, helper);
 
-        if (null != item.favorList && !item.favorList.isEmpty()) {
-            helper.fvFavorUsers.setVisibility(View.VISIBLE);
-            helper.fvFavorUsers.setFavorList(item.favorList);
-        } else {
-            helper.fvFavorUsers.setVisibility(View.GONE);
-        }
+        helper.fvFavorUsers.setFavorList(item.favorList);
 
-        if (null != item.fcCommentList && !item.fcCommentList.isEmpty()) {
-            helper.clvComment.setVisibility(View.VISIBLE);
-            helper.clvComment.setCommentList(item.fcCommentList);
-        } else {
-            helper.clvComment.setVisibility(View.GONE);
-        }
-
-        if (null != item.favorList && !item.favorList.isEmpty() && null != item.fcCommentList && !item.fcCommentList.isEmpty()) {
-            //显示赞与评论区中间的分割线
-            helper.vDiv.setVisibility(View.VISIBLE);
-        } else {
-            helper.vDiv.setVisibility(View.GONE);
-        }
+        helper.clvComment.setCommentList(item.fcCommentList);
 
         helper.ivShowPop.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,7 +93,7 @@ public class CircleAdapter extends BaseQuickAdapter<FcCircle, CircleAdapter.Circ
                         @Override
                         public void onFavorClick(View v) {
                             if (null != mFavorListener) {
-                                mFavorListener.onFavor(helper.fvFavorUsers, item, getCurUserFavor(item));
+                                mFavorListener.onFavor(item, getCurUserFavor(item), helper.fvFavorUsers, getPositionByItem(item));
                             }
                         }
 
@@ -122,10 +102,10 @@ public class CircleAdapter extends BaseQuickAdapter<FcCircle, CircleAdapter.Circ
                             if (null != mCommentClickListener) {
                                 if (helper.llCommentFavorArea.getVisibility() == View.VISIBLE) {
                                     //评论区已经显示，就返回评论区的view
-                                    mCommentClickListener.onCommentClick(item, null, helper.clvComment, helper.llCommentFavorArea);
+                                    mCommentClickListener.onComment(item, null, helper.llCommentFavorArea, helper.clvComment, getPositionByItem(item));
                                 } else {
                                     //否则返回操作栏的view
-                                    mCommentClickListener.onCommentClick(item, null, helper.clvComment, helper.rlOperation);
+                                    mCommentClickListener.onComment(item, null, helper.rlOperation, helper.clvComment, getPositionByItem(item));
                                 }
                             }
                         }
@@ -142,7 +122,7 @@ public class CircleAdapter extends BaseQuickAdapter<FcCircle, CircleAdapter.Circ
             @Override
             public void onItemClick(View v, int position) {
                 if (null != mCommentClickListener) {
-                    mCommentClickListener.onCommentClick(item, item.fcCommentList.get(position).fromFcUser, helper.clvComment, v);
+                    mCommentClickListener.onComment(item, item.fcCommentList.get(position).fromFcUser, v, helper.clvComment, getPositionByItem(item));
                 }
             }
         });
@@ -151,7 +131,7 @@ public class CircleAdapter extends BaseQuickAdapter<FcCircle, CircleAdapter.Circ
             @Override
             public void onUserClick(View v, FcUser fcUser) {
                 if (mClickUserComment && null != mCommentClickListener) {
-                    mCommentClickListener.onCommentClick(item, fcUser, helper.clvComment, v);
+                    mCommentClickListener.onComment(item, fcUser, v, helper.clvComment, getPositionByItem(item));
                 }
 
                 if (null != mOnUserClickListener) {
@@ -159,6 +139,47 @@ public class CircleAdapter extends BaseQuickAdapter<FcCircle, CircleAdapter.Circ
                 }
             }
         });
+
+        helper.clvComment.setOnItemLongClickListener(new CommentListView.OnItemLongClickListener() {
+            @Override
+            public void onItemLongClick(View v, int position) {
+                if (null != mOnCommentItemLongClickListener) {
+                    mOnCommentItemLongClickListener.onItemLongClick(item, item.fcCommentList.get(position), helper.clvComment, getPositionByItem(item));
+                }
+            }
+        });
+    }
+
+    private void showOrHiddenFavorComment(FcCircle item, CircleViewHolder helper) {
+        //整个点赞和评论区域
+        if ((null == item.favorList || item.favorList.isEmpty()) && (null == item.fcCommentList || item.fcCommentList.isEmpty())) {
+            //隐藏评论区域
+            helper.llCommentFavorArea.setVisibility(View.GONE);
+        } else {
+            helper.llCommentFavorArea.setVisibility(View.VISIBLE);
+        }
+
+        //点赞控件
+        if (null != item.favorList && !item.favorList.isEmpty()) {
+            helper.fvFavorUsers.setVisibility(View.VISIBLE);
+        } else {
+            helper.fvFavorUsers.setVisibility(View.GONE);
+        }
+
+        //分割线
+        if (null != item.favorList && !item.favorList.isEmpty() && null != item.fcCommentList && !item.fcCommentList.isEmpty()) {
+            //显示赞与评论区中间的分割线
+            helper.vDiv.setVisibility(View.VISIBLE);
+        } else {
+            helper.vDiv.setVisibility(View.GONE);
+        }
+
+        //评论列表控件
+        if (null != item.fcCommentList && !item.fcCommentList.isEmpty()) {
+            helper.clvComment.setVisibility(View.VISIBLE);
+        } else {
+            helper.clvComment.setVisibility(View.GONE);
+        }
     }
 
     private FcFavor getCurUserFavor(FcCircle fcCircle) {
@@ -170,6 +191,14 @@ public class CircleAdapter extends BaseQuickAdapter<FcCircle, CircleAdapter.Circ
             }
         }
         return null;
+    }
+
+    public int getPositionByItem(FcCircle item) {
+        if (null == item || null == mData) {
+            return -1;
+        }
+
+        return mData.indexOf(item);
     }
 
     public static class CircleViewHolder extends BaseViewHolder {
@@ -206,8 +235,12 @@ public class CircleAdapter extends BaseQuickAdapter<FcCircle, CircleAdapter.Circ
         mFavorListener = listener;
     }
 
-    public void setOnCommentClickListener(OnCommentClickListener listener) {
+    public void setOnCommentListener(OnCommentListener listener) {
         mCommentClickListener = listener;
+    }
+
+    public void setOnCommentItemLongClickListener(OnCommentItemLongClickListener listener) {
+        mOnCommentItemLongClickListener = listener;
     }
 
     public void setOnUserClickListener(OnUserClickListener listener) {
@@ -215,11 +248,15 @@ public class CircleAdapter extends BaseQuickAdapter<FcCircle, CircleAdapter.Circ
     }
 
     public interface OnFavorListener {
-        void onFavor(FavorView favorView, FcCircle fcCircle, FcFavor fcFavor);
+        void onFavor(FcCircle fcCircle, FcFavor fcFavor, FavorView favorView, int itemPosition);
     }
 
-    public interface OnCommentClickListener {
-        void onCommentClick(FcCircle fcCircle, FcUser toFcUser, CommentListView clvComment, View alignView);
+    public interface OnCommentListener {
+        void onComment(FcCircle fcCircle, FcUser toFcUser, View alignView, CommentListView clvComment, int itemPosition);
+    }
+
+    public interface OnCommentItemLongClickListener {
+        void onItemLongClick(FcCircle fcCircle, FcComment fcComment, CommentListView clvComment, int itemPosition);
     }
 
     public interface OnUserClickListener {

@@ -14,8 +14,8 @@ import com.yhy.fridcir.spannable.CircleMovementMethod;
 
 public class ExpandTextView extends LinearLayout {
     public static final int DEFAULT_MAX_LINES = 3;
-    private TextView contentText;
-    private TextView textPlus;
+    private TextView tvContent;
+    private TextView tvPlus;
 
     private int showLines;
 
@@ -42,23 +42,24 @@ public class ExpandTextView extends LinearLayout {
     private void initView() {
         setOrientation(LinearLayout.VERTICAL);
         LayoutInflater.from(getContext()).inflate(R.layout.widget_expand_textview, this);
-        contentText = (TextView) findViewById(R.id.contentText);
+        tvContent = (TextView) findViewById(R.id.tv_content);
+        tvPlus = (TextView) findViewById(R.id.tv_plus);
+
         if (showLines > 0) {
-            contentText.setMaxLines(showLines);
+            tvContent.setMaxLines(showLines);
         }
 
-        textPlus = (TextView) findViewById(R.id.textPlus);
-        textPlus.setOnClickListener(new OnClickListener() {
+        tvPlus.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                String textStr = textPlus.getText().toString().trim();
+                String textStr = tvPlus.getText().toString().trim();
                 if ("全文".equals(textStr)) {
-                    contentText.setMaxLines(Integer.MAX_VALUE);
-                    textPlus.setText("收起");
+                    tvContent.setMaxLines(Integer.MAX_VALUE);
+                    tvPlus.setText("收起");
                     setExpand(true);
                 } else {
-                    contentText.setMaxLines(showLines);
-                    textPlus.setText("全文");
+                    tvContent.setMaxLines(showLines);
+                    tvPlus.setText("全文");
                     setExpand(false);
                 }
                 //通知外部状态已变更
@@ -79,26 +80,26 @@ public class ExpandTextView extends LinearLayout {
     }
 
     public void setText(final CharSequence content) {
-        contentText.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+        tvContent.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
 
             @Override
             public boolean onPreDraw() {
                 // 避免重复监听
-                contentText.getViewTreeObserver().removeOnPreDrawListener(this);
+                tvContent.getViewTreeObserver().removeOnPreDrawListener(this);
 
-                int linCount = contentText.getLineCount();
+                int linCount = tvContent.getLineCount();
                 if (linCount > showLines) {
 
                     if (isExpand) {
-                        contentText.setMaxLines(Integer.MAX_VALUE);
-                        textPlus.setText("收起");
+                        tvContent.setMaxLines(Integer.MAX_VALUE);
+                        tvPlus.setText("收起");
                     } else {
-                        contentText.setMaxLines(showLines);
-                        textPlus.setText("全文");
+                        tvContent.setMaxLines(showLines);
+                        tvPlus.setText("全文");
                     }
-                    textPlus.setVisibility(View.VISIBLE);
+                    tvPlus.setVisibility(View.VISIBLE);
                 } else {
-                    textPlus.setVisibility(View.GONE);
+                    tvPlus.setVisibility(View.GONE);
                 }
 
                 //Log.d("onPreDraw", "onPreDraw...");
@@ -108,8 +109,8 @@ public class ExpandTextView extends LinearLayout {
 
 
         });
-        contentText.setText(content);
-        contentText.setMovementMethod(new CircleMovementMethod(getResources().getColor(R.color.name_selector_color)));
+        tvContent.setText(content);
+        tvContent.setMovementMethod(new CircleMovementMethod(getResources().getColor(R.color.name_selector_color)));
     }
 
     public void setExpand(boolean isExpand) {

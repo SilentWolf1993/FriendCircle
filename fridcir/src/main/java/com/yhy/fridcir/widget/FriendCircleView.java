@@ -25,7 +25,6 @@ import com.yhy.widget.rv.div.RvDivider;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Created by HongYi Yan on 2017/5/3 9:31.
@@ -41,6 +40,8 @@ public class FriendCircleView extends LinearLayout {
     private OnFavorListener mOnFavorListener;
     private OnCommentListener mOnCommentListener;
     private boolean mClickUserComment;
+    private OnCommentItemLongClickListener mOnCommentItemLongClickListener;
+    private OnUserClickListener mOnUserClickListener;
 
     public FriendCircleView(Context context) {
         this(context, null);
@@ -66,7 +67,7 @@ public class FriendCircleView extends LinearLayout {
 
     private void initAttrs(AttributeSet attrs) {
         TypedArray ta = mCtx.obtainStyledAttributes(attrs, R.styleable.FriendCircleViewAttrs);
-        mClickUserComment = ta.getBoolean(R.styleable.FriendCircleViewAttrs_click_user_comment, false);
+        mClickUserComment = ta.getBoolean(R.styleable.FriendCircleViewAttrs_click_user_comment, true);
         ta.recycle();
     }
 
@@ -125,40 +126,83 @@ public class FriendCircleView extends LinearLayout {
 
         mAdapter.setOnFavorListener(new CircleAdapter.OnFavorListener() {
             @Override
-            public void onFavor(FavorView favorView, FcCircle item, FcFavor fcFavor) {
+            public void onFavor(FcCircle fcCircle, FcFavor fcFavor, FavorView favorView, int itemPosition) {
                 if (null == fcFavor) {
-                    //说明未赞过
-                    fcFavor = new FcFavor();
-                    fcFavor.id = UUID.randomUUID().toString();
-                    fcFavor.fcUser = mFcUser;
+                    //说明未赞过，添加赞
                     //回调
                     if (null != mOnFavorListener) {
-                        mOnFavorListener.onFavor(item, fcFavor, false);
-                    }
-                    favorView.addFavor(fcFavor);
-                    if (favorView.getVisibility() != VISIBLE) {
-                        favorView.setVisibility(VISIBLE);
+                        mOnFavorListener.onFavor(favorView, fcCircle, itemPosition);
                     }
                 } else {
+                    //已经赞过，需要取消赞
                     //回调
                     if (null != mOnFavorListener) {
-                        mOnFavorListener.onFavor(item, fcFavor, true);
+                        mOnFavorListener.onCancel(favorView, fcCircle, fcFavor, itemPosition);
                     }
-                    favorView.removeFavor(fcFavor);
                 }
             }
         });
 
-        mAdapter.setOnCommentClickListener(new CircleAdapter.OnCommentClickListener() {
+        mAdapter.setOnCommentListener(new CircleAdapter.OnCommentListener() {
             @Override
-            public void onCommentClick(FcCircle fcCircle, FcUser toFcUser, CommentListView clvComment, View alignView) {
+            public void onComment(FcCircle fcCircle, FcUser toFcUser, View alignView, CommentListView clvComment, int itemPosition) {
                 //请求服务器添加评论
-                commentAndReply(fcCircle, toFcUser, clvComment, alignView);
+                commentAndReply(fcCircle, toFcUser, clvComment, alignView, itemPosition);
+            }
+        });
+
+        mAdapter.setOnCommentItemLongClickListener(new CircleAdapter.OnCommentItemLongClickListener() {
+            @Override
+            public void onItemLongClick(FcCircle fcCircle, FcComment fcComment, CommentListView clvComment, int itemPosition) {
+                if (null != mOnCommentItemLongClickListener) {
+                    mOnCommentItemLongClickListener.onItemLongClick(fcCircle, fcComment, clvComment, itemPosition);
+                }
+            }
+        });
+
+        mAdapter.setOnUserClickListener(new CircleAdapter.OnUserClickListener() {
+            @Override
+            public void onUserClcik(View v, FcCircle fcCircle, FcUser fcUser) {
+                if (null != mOnUserClickListener) {
+                    mOnUserClickListener.onUserClcik(v, fcCircle, fcUser);
+                }
             }
         });
     }
 
-    private void commentAndReply(final FcCircle fcCircle, final FcUser toFcUser, final CommentListView clvComment, final View alignView) {
+    public void addFavor(FavorView favorView, FcFavor fcFavor, int itemPosition) {
+        if (null != favorView && null != fcFavor) {
+            favorView.addFavor(fcFavor);
+            refreshUi(itemPosition);
+        }
+    }
+
+    public void removeFavor(FavorView favorView, FcFavor fcFavor, int itemPosition) {
+        if (null != favorView && null != fcFavor) {
+            favorView.removeFavor(fcFavor);
+            refreshUi(itemPosition);
+        }
+    }
+
+    public void addComment(CommentListView clvComment, FcComment fcComment, int itemPosition) {
+        if (null != clvComment && null != fcComment) {
+            clvComment.addComment(fcComment);
+            refreshUi(itemPosition);
+        }
+    }
+
+    public void removeComment(CommentListView clvComment, FcComment fcComment, int itemPosition) {
+        if (null != clvComment && null != fcComment) {
+            clvComment.removeComment(fcComment);
+            refreshUi(itemPosition);
+        }
+    }
+
+    private void refreshUi(int itemPosition) {
+        mAdapter.notifyItemChanged(itemPosition);
+    }
+
+    private void commentAndReply(final FcCircle fcCircle, final FcUser toFcUser, final CommentListView clvComment, final View alignView, final int itemPosition) {
         final int[] coord = new int[2];
         if (null != alignView) {
             alignView.getLocationOnScreen(coord);
@@ -174,26 +218,20 @@ public class FriendCircleView extends LinearLayout {
                 dialog.dismiss();
 
                 FcComment fcComment = new FcComment();
-                fcComment.id = UUID.randomUUID().toString();
+//                fcComment.id = UUID.randomUUID().toString();
                 fcComment.content = etInput.getText().toString();
                 fcComment.fromFcUser = mFcUser;
                 fcComment.toFcUser = toFcUser;
 
                 //回调
                 if (null != mOnFavorListener) {
-                    mOnCommentListener.onCommentClick(fcCircle, fcComment);
+                    mOnCommentListener.onComment(fcCircle, fcComment, clvComment, itemPosition);
                 }
-
-                //添加评论到界面
-                clvComment.addComment(fcComment);
             }
 
             @Override
             public void onShow(int[] ivPosition) {
                 // 点击某条评论则这条评论刚好在输入框上面，点击评论按钮则输入框刚好挡住按钮
-//                Log.i(TAG, "commentBtn : " + coord[1]);
-//                Log.i(TAG, "inputArea : " + ivPosition[1]);
-
                 int span = alignView.getHeight();
                 int dy = coord[1] + span - ivPosition[1];
                 rvCircle.smoothScrollBy(0, dy, new AccelerateDecelerateInterpolator());
@@ -213,11 +251,29 @@ public class FriendCircleView extends LinearLayout {
         mOnCommentListener = listener;
     }
 
+    public void setOnCommentItemLongClickListener(OnCommentItemLongClickListener listener) {
+        mOnCommentItemLongClickListener = listener;
+    }
+
+    public void setOnUserClickListener(OnUserClickListener listener) {
+        mOnUserClickListener = listener;
+    }
+
     public interface OnFavorListener {
-        void onFavor(FcCircle fcCircle, FcFavor fcFavor, boolean isCancel);
+        void onFavor(FavorView favorView, FcCircle fcCircle, int itemPosition);
+
+        void onCancel(FavorView favorView, FcCircle fcCircle, FcFavor fcFavor, int itemPosition);
     }
 
     public interface OnCommentListener {
-        void onCommentClick(FcCircle fcCircle, FcComment fcComment);
+        void onComment(FcCircle fcCircle, FcComment fcComment, CommentListView clvComment, int itemPosition);
+    }
+
+    public interface OnCommentItemLongClickListener {
+        void onItemLongClick(FcCircle fcCircle, FcComment fcComment, CommentListView clvComment, int itemPosition);
+    }
+
+    public interface OnUserClickListener {
+        void onUserClcik(View v, FcCircle fcCircle, FcUser fcUser);
     }
 }
